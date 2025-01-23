@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <!-- PlantTAGG Widget Integration for BigCommerce -->
+    <div id="planttagg-widget-container">
+      <!-- Fallback message for unsupported environments -->
+      Your widget is loading...
+    </div>
+    
+    <!-- Embed PlantTAGG Widget -->
+    <base href="/" />
+    <planttagg-widget 
+      token="27DTJ0TS2KZW1XM5VGBAUPWUYGOC1NZ6J27EERE35Y99OS4C27SX">
+    </planttagg-widget>
+    
+    <!-- Force JavaScript and CSS inclusion -->
+    <script type="text/javascript" defer>
+      // Dynamically load PlantTAGG widget script
+      (function() {
+        const script = document.createElement('script');
+        script.src = "https://m.planttagg.com/widget/planttagg-widget.js";
+        script.type = "text/javascript";
+        script.defer = true;
+        document.head.appendChild(script);
+        
+        // Ensure Access-Control headers and method are included
+        script.onload = function() {
+          fetch("https://m.planttagg.com/widget-endpoint", {
+            method: 'OPTIONS',
+            headers: {
+              'Access-Control-Request-Method': 'POST',
+              'Origin': 'https://twinoaksonline.com'
+            }
+          }).catch(err => console.error("Header injection test failed:", err));
+        };
+      })();
+    
+      // Dynamically load PlantTAGG widget CSS
+      (function() {
+        const link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = "https://m.planttagg.com/widget/planttagg-widget.css";
+        link.media = "print";
+        link.onload = function() { this.media = "all"; };
+        document.head.appendChild(link);
+      })();
+    </script>
+    
+    <!-- For CSP compliance -->
+    <noscript>
+      JavaScript is required to load the PlantTAGG widget. Please enable JavaScript and reload the page.
+    </noscript>
+</body>
+</html>
